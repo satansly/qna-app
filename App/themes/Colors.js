@@ -1,3 +1,5 @@
 export default {
-  lightgrey: '#AAA'
+  lightgrey: '#ccc',
+  darkgrey: '#888',
+  black: '#000'
 }

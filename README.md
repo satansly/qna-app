@@ -1,3 +1,31 @@
+----------------------------------------------------------------------------------------------------------------------------
+Run Project Instructions
+----------------------------------------------------------------------------------------------------------------------------
+run `npm install` in root folder
+run `yarn start` after install has completed
+press `i` to initiate ios simulator
+
+
+----------------------------------------------------------------------------------------------------------------------------
+TODOs
+----------------------------------------------------------------------------------------------------------------------------
+Unit Testing
+Separating layouts for iOs and Android with separate platform specific index files
+Breaking down reducers
+Using lodash for faster array processing
+Implement navigation
+
+----------------------------------------------------------------------------------------------------------------------------
+Time Tracking
+----------------------------------------------------------------------------------------------------------------------------
+3 Hours spent prototyping
+2 Hours spent refactoring
+3 Hours spent on research (building RN app with ignite boilerplate and reduxsauce, apisauce)
+
+----------------------------------------------------------------------------------------------------------------------------
+React Native Instructions
+----------------------------------------------------------------------------------------------------------------------------
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

@@ -1,30 +1,17 @@
 import { StyleSheet } from 'react-native'
+import Styles from '../../themes/Styles'
 import Colors from '../../themes/Colors'
 import Fonts from '../../themes/Fonts'
 export default StyleSheet.create({
-  container: {
-    flex: 1,
+  ...Styles,
+  loading: {
+    ...Fonts.types.body,
     backgroundColor: Colors.lightgrey,
-    justifyContent: 'space-between'
-  },
-  title: {
-    ...Fonts.types.title,
-    padding: 20,
     textAlign: 'center'
   },
-  body: {
-    ...Fonts.types.body,
-    padding: 10,
-    textAlign: 'center'
-  },
-  button: {
-    ...Fonts.types.body,
-    padding: 10,
-    textAlign: 'center'
-  },
-  item: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc'
+  container: {
+    ...Styles.container,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })

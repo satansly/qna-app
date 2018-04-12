@@ -5,8 +5,8 @@ import {View, Text, TouchableOpacity} from 'react-native'
 import he from 'he'
 const Question = ({title, questions, current, onAction}) => {
   let question = questions[current]
-  console.log(questions)
-  let options = question.incorrect_answers.concat([question.correct_answer]).map(item => {
+  // TODO: Use lodash for faster array ops
+  let options = question.incorrect_answers.concat([question.correct_answer]).sort().map(item => {
     return <TouchableOpacity key={item} onPress={() => onAction(question, item)}><Text style={styles.button}>{item}</Text></TouchableOpacity>
   })
   return (

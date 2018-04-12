@@ -11,6 +11,7 @@ export const GET_QUESTIONS_FAIL = 'GET_QUESTIONS_FAIL'
 
 export function listQuestions (amount, difficulty, type) {
   return function (dispatch) {
+    dispatch(getQuestions())
     return QnAAPI.getQuestions(amount, difficulty, type).then(result => {
       console.log(result)
       dispatch(getQuestionsSuccess(result))
@@ -20,7 +21,11 @@ export function listQuestions (amount, difficulty, type) {
     })
   }
 }
-
+export function getQuestions () {
+  return {
+    type: GET_QUESTIONS
+  }
+}
 export function getQuestionsSuccess (result) {
   return {
     type: GET_QUESTIONS_SUCCESS,

@@ -9,13 +9,16 @@ import {INTRO_SCREEN, QUESTIONS_SCREEN, RESULTS_SCREEN} from './reducer'
 import Question from '../../components/question'
 import Results from '../../components/results'
 import Intro from '../../components/intro'
+import Config from '../../../env.json'
+// TODO: Separate handling of iOS and Android with index.ios.js and index.android.js
+
 class MainView extends Component {
   handleAnswer = (question, item) => {
     const {current} = this.props
     this.props.answerQuestion(current, (question.correct_answer === item))
   }
   handleBegin = () => {
-    this.props.listQuestions(10, 'hard', 'boolean')
+    this.props.listQuestions(Config.QUESTIONS_COUNT, 'hard', 'boolean')
   }
   render () {
     const {
@@ -31,7 +34,7 @@ class MainView extends Component {
      let content
      let footer
      if (loading) {
-
+       return (<View style={styles.container}><Text style={styles.loading}>Loading</Text></View>)
      } else {
        if(screen === INTRO_SCREEN) {
          return (<Intro title={title} body={body} action={action} onAction={this.handleBegin} />)

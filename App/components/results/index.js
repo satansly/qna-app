@@ -12,7 +12,7 @@ const Result = ({title, questions, answers, action, onAction}) => (
         let answer = (answers[index]) ? '+' : '-'
         return <View style={styles.itemContainer}>
           <Text style={styles.item}>{answer}</Text>
-          <Text style={styles.item}>{`${he.decode(item.question)}`}</Text>
+          <Text style={styles.item} numberOfLines={2}>{`${he.decode(item.question)}`}</Text>
         </View>
       }} />
     <TouchableOpacity onPress={onAction}>
