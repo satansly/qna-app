@@ -9,23 +9,22 @@ export default StyleSheet.create({
   },
   title: {
     ...Fonts.types.title,
-    padding: 20
+    padding: 20,
+    textAlign: 'center'
   },
   body: {
     ...Fonts.types.body,
-    padding: 10
+    padding: 10,
+    textAlign: 'center'
   },
   button: {
     ...Fonts.types.body,
     padding: 10,
     textAlign: 'center'
   },
-  itemContainer: {
-    flexDirection: 'row'
-  },
   item: {
-    ...Fonts.types.body,
-    color: '#555',
-    padding: 10
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc'
   }
 })

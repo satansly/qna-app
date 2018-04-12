@@ -1,16 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 
 import questionsReducer from '../containers/main/reducer'
-import axios from 'axios'
-import axiosMiddleware from 'redux-axios-middleware'
-
-const client = axios.create({
-  baseURL: 'https://opentdb.com/',
-  responseType: 'json'
-})
+import thunk from 'redux-thunk'
 
 const reducers = combineReducers({
   questionsReducer
 })
-const store = createStore(reducers, applyMiddleware(axiosMiddleware(client)))
+const store = createStore(reducers, applyMiddleware(thunk))
 export default store

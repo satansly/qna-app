@@ -8,16 +8,15 @@ import { listQuestions, answerQuestion } from './actions'
 import {INTRO_SCREEN, QUESTIONS_SCREEN, RESULTS_SCREEN} from './reducer'
 import Question from '../../components/question'
 import Results from '../../components/results'
+import Intro from '../../components/intro'
 class MainView extends Component {
-
+  handleAnswer = (question, item) => {
+    const {current} = this.props
+    this.props.answerQuestion(current, (question.correct_answer === item))
+  }
   handleBegin = () => {
     this.props.listQuestions(10, 'hard', 'boolean')
   }
-  handleAnswer = (question, item) => {
-    const {current} = this.props
-    this.props.answerQuestion(current, (question.correct_answer === item), current)
-  }
-
   render () {
     const {
       title,
@@ -32,40 +31,22 @@ class MainView extends Component {
      let content
      let footer
      if (loading) {
-       
+
      } else {
        if(screen === INTRO_SCREEN) {
-         content = <Text style={styles.body}>{body}</Text>
-         footer = <TouchableOpacity onPress={this.handleBegin}>
-           <Text style={styles.button}>{action}</Text>
-         </TouchableOpacity>
+         return (<Intro title={title} body={body} action={action} onAction={this.handleBegin} />)
        } else if (screen === QUESTIONS_SCREEN) {
-         let question = this.props.questions[current]
-         let options = question.incorrect_answers.concat([question.correct_answer]).map(item => {
-           return <TouchableOpacity key={item} onPress={() => this.handleAnswer(question, item)}><Text style={styles.button}>{item}</Text></TouchableOpacity>
-         })
-         console.log(options)
-         content = <View><Text style={[styles.body, {borderWidth: 1, borderColor: '#000'}]}>{question.question}</Text><Text style={styles.body}>{`${current + 1} of ${questions.length}`}</Text></View>
-         footer = <View>{options}</View>
+         return (<Question title={title} questions={questions} current={current} onAction={this.handleAnswer} />)
        } else {
-         content = <FlatList
-          data={this.props.questions}
-          renderItem={ ({item, index}) => {
-            let answer  = this.props.answers[index] ? '+' : '-'
-            return <Text style={styles.button}>{`${answer} ${item.question}`}</Text>
-          }} />
-         footer = <TouchableOpacity onPress={this.handleBegin}>
-           <Text style={styles.button}>{action}</Text>
-         </TouchableOpacity>
+         let correct = 0
+         for (i in answers) {
+           if(answers[i]) {
+             correct++
+           }
+         }
+         return (<Results title={title} action={action} questions={questions} answers={answers} onAction={this.handleBegin} />)
        }
      }
-     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
-        {content}
-        {footer}
-      </View>
-    )
   }
 }
 

@@ -1,19 +1,26 @@
-import React, {PureComponent} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import styles from './styles'
 import {View, Text, TouchableOpacity} from 'react-native'
-export default class Question extends PureComponent {
-  handleAction = () => {
-
-  }
-  render () {
-    let question = this.props.question.question
-    let options = this.props.question.incorrect_answers.concat([this.props.question.correct_answer]).map(item => {
-      return <TouchableOpacity onPress={this.handleAction}>item</TouchableOpacity>
-    })
-    return (
-      <View>
-      <Text>{question}</Text>
-      {options}
-      </View>
-    )
-  }
+import he from 'he'
+const Question = ({title, questions, current, onAction}) => {
+  let question = questions[current]
+  console.log(questions)
+  let options = question.incorrect_answers.concat([question.correct_answer]).map(item => {
+    return <TouchableOpacity key={item} onPress={() => onAction(question, item)}><Text style={styles.button}>{item}</Text></TouchableOpacity>
+  })
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <View><Text style={[styles.body, {borderWidth: 1, borderColor: '#000'}]}>{he.decode(question.question)}</Text><Text style={styles.body}>{`${current + 1} of ${questions.length}`}</Text></View>
+      <View>{options}</View>
+    </View>
+  )
 }
+Question.propTypes = {
+  onAction: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  questions: PropTypes.array.isRequired,
+  current: PropTypes.number.isRequired
+}
+export default Question

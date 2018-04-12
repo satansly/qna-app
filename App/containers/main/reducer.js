@@ -24,33 +24,44 @@ export const initialState = {
 
 export default function reducer (state, action) {
   switch (action.type) {
+    case GET_QUESTIONS:
+      return { ...state, loading: true }
+    case GET_QUESTIONS_SUCCESS: {
+      let questions = action.result.results
+      return { ...state, screen: QUESTIONS_SCREEN, loading: false, questions, answers: Array(questions.length), title: questions[0].category, current: 0 }
+    }
+    case GET_QUESTIONS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        screen: INTRO_SCREEN,
+        error: 'Error while fetching questions'
+      }
     case INITIAL:
       return {...state, ...initialState}
     case ANSWER_QUESTION: {
       const {answers, questions, current} = state
       let screen = QUESTIONS_SCREEN
-      if (action.answerIndex < questions.length - 1) {
+      let answersUpdate = answers.slice()
+      answersUpdate[current] = action.answered
+      if (current < questions.length - 1) {
         screen = {screen: QUESTIONS_SCREEN}
       } else {
-        screen = {screen: RESULTS_SCREEN, title: strings('results.title', {correct: state.answers.length, total: state.questions.length}), action: strings('results.action')}
+        let correct = 0
+        for (var i in answersUpdate) {
+          if (answersUpdate[i]) {
+            correct++
+          }
+        }
+        screen = {screen: RESULTS_SCREEN, title: strings('results.title', {correct, total: state.questions.length}), action: strings('results.action')}
       }
       if (action.answered) {
-        return {...state, ...screen, answers: answers.concat([action.answered]), current: current + 1}
+        answers[current] = action.answered
+        return {...state, ...screen, answers: answersUpdate, current: current + 1}
       } else {
         return {...state, ...screen, current: current + 1}
       }
     }
-    case GET_QUESTIONS:
-      return { ...state, loading: true }
-    case GET_QUESTIONS_SUCCESS:
-      let questions = action.payload.data.results
-      return { ...state, screen: QUESTIONS_SCREEN, loading: false, questions, answers: Array(questions.length), title: questions[0].category, current: 0 }
-    case GET_QUESTIONS_FAIL:
-      return {
-        ...state,
-        loading: false,
-        error: 'Error while fetching questions'
-      }
     default:
       return initialState
   }
