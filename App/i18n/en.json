@@ -1,0 +1,11 @@
+{
+  "intro" : {
+    "title" : "Welcome to the Trivia Challenge!",
+    "body" : "You will be presented with {{amount}} True or False questions\n\nCan you score 100%?",
+    "action" : "BEGIN"
+  },
+  "results" : {
+    "title" : "You score {{correct}} \\ {{total}}",
+    "action" : "PLAY AGAIN?"
+  }
+}

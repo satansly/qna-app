@@ -1,0 +1,38 @@
+{
+  "name": "qna-app",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "jest-expo": "26.0.0",
+    "react-native-scripts": "1.13.1",
+    "react-test-renderer": "16.3.0-alpha.1",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "7.1.1",
+    "babel-jest": "20.0.3",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react-native": "2.0.0"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "expo": "^26.0.0",
+    "react": "16.3.0-alpha.1",
+    "react-native": "0.54.0",
+    "react-native-config": "^0.11.5",
+    "react-native-i18n": "^2.0.12",
+    "react-navigation": "^1.5.11",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-axios-middleware": "^4.0.0"
+  }
+}
