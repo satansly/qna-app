@@ -8,6 +8,10 @@ export default {
     body: {
       fontSize: 32,
       color: '#000'
+    },
+    header: {
+      fontSize: 14,
+      color: '#000'
     }
   }
 }

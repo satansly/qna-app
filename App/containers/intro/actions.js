@@ -1,9 +1,9 @@
 
 import QnAAPI from '../../services'
 
-export const INITIAL = 'INITIAL'
+export const QUESTIONS_INITIAL = 'QUESTIONS_INITIAL'
 
-export const ANSWER_QUESTION = 'ANSWER_QUESTION'
+export const RESET_ALL = 'RESET_ALL'
 
 export const GET_QUESTIONS = 'GET_QUESTIONS'
 export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS'
@@ -13,14 +13,19 @@ export function listQuestions (amount, difficulty, type) {
   return function (dispatch) {
     dispatch(getQuestions())
     return QnAAPI.getQuestions(amount, difficulty, type).then(result => {
-      console.log(result)
       dispatch(getQuestionsSuccess(result))
     }).catch(error => {
-      console.log(error)
       dispatch(getQuestionsFail(error))
     })
   }
 }
+
+export function clear () {
+  return function (dispatch) {
+    dispatch(setInitial())
+  }
+}
+
 export function getQuestions () {
   return {
     type: GET_QUESTIONS
@@ -39,10 +44,15 @@ export function getQuestionsFail (error) {
     error
   }
 }
-export function answerQuestion (current, answered) {
+
+export function setInitial () {
   return {
-    type: ANSWER_QUESTION,
-    current,
-    answered
+    type: QUESTIONS_INITIAL
+  }
+}
+
+export function reset () {
+  return {
+    type: RESET_ALL
   }
 }

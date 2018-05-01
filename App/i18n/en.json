@@ -7,5 +7,7 @@
   "results" : {
     "title" : "You score {{correct}} \\ {{total}}",
     "action" : "PLAY AGAIN?"
-  }
+  },
+  "ok": "OK",
+  "error": "Error"
 }
